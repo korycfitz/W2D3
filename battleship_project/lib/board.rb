@@ -1,7 +1,7 @@
 class Board
     attr_reader :size
     def initialize(n)
-        @grid = Array.new(n) {Array.new(n)}
+        @grid = Array.new(n) {Array.new(n, :N)}
         @size  = (n * n) #total size of grid
     end
 
