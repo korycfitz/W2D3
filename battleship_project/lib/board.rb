@@ -1,7 +1,20 @@
 class Board
     require 'byebug'
-
     attr_reader :size
+
+    def self.print_grid(grid)
+        grid.each do | row |
+            row.join(" ")
+            row.map do | ele |
+                ele + " "
+            end
+
+            puts row
+        end
+    end
+
+
+
     def initialize(n)
         @grid = Array.new(n) {Array.new(n, :N)}
         @size = (n * n) #total size of grid
@@ -31,7 +44,7 @@ class Board
     end
                             #   # Note:
                             #   board[pos] = :S       # this line...
-                            #   board.[]=(pos, :S)    # is same as this line. :)
+        #instance method    #   board.[]=(pos, :S)    # is same as this line. :)
     def attack(position) #array             [  position ]
 #       # if self[position] #if board_instance[  [3, 4]   ]  
 #         #if board_instance[position] 
@@ -79,26 +92,24 @@ class Board
     end
 
     def hidden_ships_grid #return 2D array representing the grid where every :S is replace with an :N
-        hidden_grid = @grid.dup
-        @grid.map(&:object_id)
-        hidden_grid.map(&:object_id)
-        (0...hidden_grid.length).each do | row |
-            (0...hidden_grid[0].length).each do | col |
-                debugger
-                hidden_grid[row][col] = :N if hidden_grid[row][col] == :S
+        # hidden_grid = @grid.dup
+        # @grid.map(&:object_id)
+        # hidden_grid.map(&:object_id)
+        @grid.map do | row |
+            row.map do | ele |
+                # debugger
+                if ele == :S
+                    :N
+                else
+                    ele
+                end
             end
         end
-        debugger
-        hidden_grid
     end
 
 
 
 end
-
-
-
-
 
 
 
