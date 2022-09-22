@@ -2,18 +2,19 @@ class Board
     require 'byebug'
     attr_reader :size
 
-    def self.print_grid(grid)
-        grid.each do | row |
-            row.join(" ")
-            row.map do | ele |
-                ele + " "
-            end
+    #why doesn't this work
+    # def self.print_grid(grid) #print each row of the grid so that each element is seperated by a space
+    #     grid.each do | row |
+    #         row.map { |ele| ele.to_s + " "}
+    #         puts row
+    #     end
+    # end
 
-            puts row
+    def self.print_grid(grid) #print each row of the grid so that each element is seperated by a space
+        grid.each do | row |
+            puts row.join(' ') #quick way to add a space b/w characters of a 1d array is by joining on a space
         end
     end
-
-
 
     def initialize(n)
         @grid = Array.new(n) {Array.new(n, :N)}
@@ -83,7 +84,7 @@ class Board
     end
 
     def place_random_ships
-        while @grid.flatten.count(:S) < @size / 4
+        while @grid.flatten.count(:S) < @size /4
             #random generate row|column
             row = rand(0...@grid.length)
             col = rand(0...@grid[0].length)
@@ -106,6 +107,16 @@ class Board
             end
         end
     end
+
+    def cheat
+        Board.print_grid(@grid) #this would display everything including ships aka why its called cheating 
+    end
+
+    def print
+        Board.print_grid(hidden_ships_grid) #would display the hidden ships grid
+        #same as Board.print_grid(self.hidden_ships_grid)
+    end
+
 
 
 
