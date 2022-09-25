@@ -11,14 +11,13 @@ class HumanPlayer
             puts "It is #{mark}'s Turn!"
             puts "Please Enter a Row Number (Enter 1 to select the Top Row, 2 to select the Second Row, and 3 to select the Bottom Row)"
             row = (gets.chomp.to_i) - 1
-
             if ![0,1,2].include?(row)
                 raise "invalid input"
+            end
+
         rescue => error
             puts "please enter a single number between 1 and 3"
             retry
-            end
-
         end
 
         begin
@@ -27,17 +26,15 @@ class HumanPlayer
             col = (gets.chomp.to_i) - 1
             if ![0,1,2].include?(col)
                 raise "invalid input"
+            end
+
         rescue => error
             puts "please enter a single number between 1 and 3"
             retry
-            end
         end
-
-        end
-
+        
         return [row, col]
     end
-
 
 
 end
